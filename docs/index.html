@@ -125,6 +125,30 @@
     </div>
   </div>
   <script>window.__NUXT__ = { config: { _app: { basePath: "cyber-takibi/", assetsPath: "_nuxt/", cdnURL: null } } }</script>
+  <script>
+    // Ensure webpack public path points to the repository's _nuxt folder on GitHub Pages
+    // This makes built bundles resolve assets under "/cyber-takibi/_nuxt/" instead of the site root
+    window.__webpack_public_path__ = '/cyber-takibi/_nuxt/';
+  </script>
+  <script>
+    // Intercept Audio construction to rewrite bundle-inserted _nuxt asset paths
+    // into the repository-scoped static path where you placed the mp3s.
+    (function(){
+      var OrigAudio = window.Audio;
+      window.Audio = function(src){
+        try{
+          if(typeof src === 'string'){
+            // normalize leading parts and find filename
+            var file = src.split('/').pop();
+            var base = (window.__NUXT__ && window.__NUXT__.config && window.__NUXT__.config._app) ? '/' + window.__NUXT__.config._app.basePath : '/';
+            // Construct path to static assets you placed under static/assets/sounds/
+            src = base + 'assets/sounds/' + file;
+          }
+        }catch(e){ /* fail silently and fallback to original src */ }
+        return new OrigAudio(src);
+      };
+    })();
+  </script>
   <script src="_nuxt/b2c54eb.js"></script>
   <script src="_nuxt/a77e57a.js"></script>
   <script src="_nuxt/544f17c.js"></script>
