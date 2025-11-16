@@ -15,8 +15,8 @@
 <script>
 import { mapGetters } from 'vuex'
 import Rain from './Rain'
-import sound1 from '~/assets/sounds/wind.mp3'
-import sound2 from '~/assets/sounds/rain.mp3'
+import sound1 from '~/static/wind.mp3'
+import sound2 from '~/static/rain.mp3'
 export default {
   name: 'EffectsIndex',
   props: {

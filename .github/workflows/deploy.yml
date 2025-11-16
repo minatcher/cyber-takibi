@@ -14,9 +14,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Move work directry
-        run: cd bonfire-app
-
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
@@ -24,7 +21,7 @@ jobs:
           cache: 'yarn'
 
       - name: Install dependencies
-        run: yarn install
+        run: yarn install --frozen-lockfile
 
       - name: Build static files
         env:
@@ -35,6 +32,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./bonfire-app/docs
+          publish_dir: ./cyber-takibi/docs
           cname: minatcher.github.io
 

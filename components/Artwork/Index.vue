@@ -23,7 +23,7 @@ import { mapGetters } from 'vuex'
 import Common from './Common'
 import Fire from './Fire'
 import AudioAnalyze, { GetResult } from './AudioAnalyze'
-import sound from '~/assets/sounds/bonfire.mp3'
+import sound from '~/static/bonfire.mp3'
 export default {
   name: 'ArtworkIndex',
   props: {
